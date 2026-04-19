@@ -29,6 +29,49 @@ tabButtons.forEach(btn =>
 
 
 /* ════════════════════════════════════════════════════
+   SAMPLE ARTICLES — full texts
+   ════════════════════════════════════════════════════ */
+const SAMPLES = {
+
+  /* ── BIASED EXAMPLES ── */
+  biased1: `The incompetent and corrupt opposition leaders have once again resorted to blatant propaganda and deliberate misinformation, desperately trying to mislead the nation with fabricated allegations against the ruling government. These so-called leaders, whose only agenda is political power, are shamelessly exploiting the emotions of ordinary citizens. Anonymous sources claim they are backed by anti-national forces that want to destabilize India. Their rhetoric is nothing short of inflammatory and seditious. Clearly, every single move by this opposition bloc is a calculated attack on the democratic fabric of our nation. Nobody in their right mind should believe these false, manipulative narratives being pushed by these radical elements. The authoritarian-minded opposition has never contributed to India's development; they only know how to obstruct, disrupt, and destroy. It is obviously in the interest of enemies of the state to keep India weak and divided. The government, on the other hand, has achieved historic milestones and must not be undermined by these desperate power-hungry politicians.`,
+
+  biased2: `The corrupt crony capitalists, backed by an authoritarian regime and their cronies in the deep state, are systematically exploiting, suppressing, and looting the marginalized working class of India. These elitist billionaires, who have stolen the nation's wealth through fraudulent means and rigged policies, are deliberately keeping the poor trapped in a cycle of poverty. Workers and farmers who dare to protest are being unlawfully targeted, attacked, and suppressed by the government machinery. It is clearly a criminal conspiracy to silence dissent and crush the voice of the oppressed. Many analysts and experts agree that this is undeniably one of the most dangerous and appalling attacks on labour rights in modern Indian history. The regime's so-called economic reforms are nothing but propaganda designed to mislead the public while handing over national assets to their corporate allies. Dalit communities and tribal groups face systemic persecution and injustice with absolutely no accountability whatsoever.`,
+
+  biased3: `The so-called secular government's blatant and obviously calculated vote bank politics is threatening the very unity and integrity of the nation. Sources claim that the anti-Hindu agenda being pushed by the ruling clique is a deliberate attack on the cultural heritage of this great civilization. The appeasement of radical minority groups at the expense of the majority is nothing short of a betrayal of the constitution. Every single policy announced by this regime has been allegedly designed to polarize communities and radicalize voters along communal lines. It is beyond doubt that this divisive and inflammatory approach is destroying the social harmony that India's ancestors built over centuries. Anonymous insiders within the government have confirmed that this is a coordinated propaganda campaign to suppress nationalism and silence patriotic voices. The controversial decisions taken by this administration are clearly unconstitutional and must be rejected by every true patriot.`,
+
+  /* ── UNBIASED / NEUTRAL EXAMPLES ── */
+  neutral1: `The Lok Sabha passed the Union Budget 2024 on Wednesday with 312 votes in favour and 189 against after a two-day debate. The bill will now be sent to the Rajya Sabha for further deliberation. Finance Minister Nirmala Sitharaman presented the budget earlier this month, which includes an allocation of Rs 11.1 lakh crore for capital expenditure. Opposition members raised concerns during the debate regarding the fiscal deficit target and the adequacy of funding for rural welfare schemes. Government representatives responded by citing projected GDP growth figures and long-term infrastructure goals. The vote was held after 14 hours of debate over two sessions. A joint parliamentary committee has been proposed to review the implementation of key allocations. The next session of Parliament is scheduled to begin in the third week of July. The bill requires passage in both houses before receiving Presidential assent and becoming law.`,
+
+  neutral2: `India's gross domestic product grew by 7.2 percent in the July to September quarter of 2024, according to data released on Tuesday by the Ministry of Statistics and Programme Implementation. The growth rate was slightly above the 7.0 percent estimate published by the Reserve Bank of India last month. The agricultural sector recorded a growth rate of 3.5 percent, while manufacturing expanded by 8.1 percent during the same period. Services, which account for the largest share of GDP, grew by 7.9 percent. The data also showed that gross fixed capital formation increased by 11.2 percent year on year, indicating continued investment activity. Household consumption expenditure grew by 6.0 percent compared to the same quarter last year. Economists from the International Monetary Fund and credit rating agency CRISIL noted that India remained one of the fastest-growing major economies globally. The government expects full-year GDP growth to come in between 7 and 7.5 percent for the fiscal year ending March 2025.`,
+
+  neutral3: `The Union Ministry of Health and Family Welfare announced on Monday the launch of a new vaccination programme targeting rural populations across 14 states. The programme aims to reach an estimated 8 million people over the next six months, focusing on children under the age of five and pregnant women. The initiative is part of the Universal Immunisation Programme and includes vaccines for measles, rubella, and diphtheria. State governments will collaborate with district health officers to establish 4,200 new immunisation centres in primary health care facilities. The World Health Organization and UNICEF will provide technical assistance for training health workers. According to the ministry, vaccine coverage in rural areas currently stands at 74 percent, compared to the national target of 90 percent. Health officials said that cold chain infrastructure improvements funded in the 2024 budget will support expanded storage and distribution. The programme is expected to be evaluated at the end of six months with coverage data submitted to parliament.`,
+};
+
+/* ── Wire sample cards to textarea ── */
+document.querySelectorAll('.sample-card').forEach(card => {
+  card.addEventListener('click', () => {
+    const key  = card.dataset.sample;
+    const text = SAMPLES[key];
+    if (!text) return;
+
+    // Fill textarea
+    const ta = document.getElementById('article-input');
+    ta.value = text;
+    ta.dispatchEvent(new Event('input'));   // update word count
+
+    // Highlight selected card, clear others
+    document.querySelectorAll('.sample-card').forEach(c => c.classList.remove('selected'));
+    card.classList.add('selected');
+
+    // Smooth scroll to the textarea
+    ta.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    ta.focus();
+  });
+});
+
+
+/* ════════════════════════════════════════════════════
    2. LIGHTBOX
    ════════════════════════════════════════════════════ */
 const overlay    = document.createElement('div');
